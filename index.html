@@ -1,0 +1,959 @@
+HTML
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For Roseannee</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    font-family:Georgia,serif;
+    background:linear-gradient(135deg,#eadcff,#d8c2ff,#f3e9ff);
+    color:#4b365f;
+}
+
+#book{
+    width:100%;
+    height:100%;
+    position:relative;
+}
+
+.page{
+    position:absolute;
+    inset:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    opacity:0;
+    transform:translateX(30px);
+    pointer-events:none;
+    transition:opacity .45s ease,transform .45s ease;
+}
+
+.page.active{
+    opacity:1;
+    transform:translateX(0);
+    pointer-events:auto;
+}
+
+.paper{
+    width:92vw;
+    max-width:520px;
+    max-height:88vh;
+    overflow-y:auto;
+    padding:30px 22px;
+    border-radius:25px;
+    background:rgba(255,255,255,.88);
+    box-shadow:
+        0 15px 40px rgba(80,45,110,.20),
+        0 0 25px rgba(190,150,255,.25);
+    text-align:center;
+    position:relative;
+}
+
+.title{
+    margin:5px 0 12px;
+    font-size:34px;
+    color:#70469a;
+}
+
+.smallTitle{
+    font-size:25px;
+    color:#76509b;
+    margin:12px 0 20px;
+}
+
+.subtitle{
+    font-size:17px;
+    line-height:1.7;
+    color:#725f7d;
+}
+
+.question{
+    margin:28px 5px;
+    font-size:21px;
+    line-height:1.7;
+    color:#553c67;
+}
+
+.message{
+    text-align:left;
+    font-size:17px;
+    line-height:1.85;
+    color:#574363;
+}
+
+.message p{
+    margin:0 0 18px;
+}
+
+.swipeHint{
+    margin-top:28px;
+    font-size:14px;
+    color:#9b82ad;
+}
+
+.pochacco{
+    width:115px;
+    max-width:45%;
+    height:auto;
+    object-fit:contain;
+    display:block;
+    margin:0 auto 18px;
+    border-radius:14px;
+}
+
+.decor{
+    position:fixed;
+    pointer-events:none;
+    z-index:10;
+}
+
+.flower{
+    font-size:22px;
+    animation:spinFlower 7s linear infinite;
+}
+
+.f1{top:8%;left:7%}
+.f2{top:18%;right:8%;animation-duration:9s}
+.f3{bottom:18%;left:8%;animation-duration:8s}
+.f4{bottom:8%;right:9%;animation-duration:10s}
+
+.sparkle{
+    font-size:22px;
+    color:#b28bd4;
+    animation:twinkle 1.8s ease-in-out infinite;
+}
+
+.s1{top:30%;left:5%}
+.s2{top:45%;right:6%;animation-delay:.5s}
+.s3{bottom:35%;left:6%;animation-delay:1s}
+.s4{bottom:25%;right:5%;animation-delay:1.4s}
+
+.bubble{
+    width:13px;
+    height:13px;
+    border:2px solid rgba(180,140,220,.5);
+    border-radius:50%;
+    animation:floatBubble 5s ease-in-out infinite;
+}
+
+.b1{left:16%;bottom:30%}
+.b2{right:16%;top:35%;animation-delay:1s}
+.b3{left:25%;top:15%;animation-delay:2s}
+.b4{right:25%;bottom:15%;animation-delay:3s}
+
+.finalLine{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    margin:15px 0 20px;
+}
+
+.finalLine span{
+    font-size:22px;
+    color:#70469a;
+    font-weight:bold;
+}
+
+.snoopy{
+    width:95px;
+    height:auto;
+    animation:swaySnoopy 1s steps(2,end) infinite;
+}
+
+.heartBurst{
+    font-size:22px;
+    letter-spacing:5px;
+    margin:12px 0;
+    animation:softPulse 2s ease-in-out infinite;
+}
+
+#dots{
+    position:fixed;
+    bottom:12px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:6px;
+    z-index:20;
+}
+
+.dot{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:rgba(120,80,150,.3);
+}
+
+.dot.active{
+    background:#8054a5;
+    transform:scale(1.35);
+}
+
+@keyframes spinFlower{
+    from{transform:rotate(0deg)}
+    to{transform:rotate(360deg)}
+}
+
+@keyframes twinkle{
+    0%,100%{opacity:.3;transform:scale(.8)}
+    50%{opacity:1;transform:scale(1.25)}
+}
+
+@keyframes floatBubble{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-18px)}
+}
+
+@keyframes swaySnoopy{
+    0%{transform:rotate(-6deg) translateY(0)}
+    100%{transform:rotate(6deg) translateY(-3px)}
+}
+
+@keyframes softPulse{
+    0%,100%{opacity:.65}
+    50%{opacity:1}
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="book">
+
+<!-- COVER -->
+
+<section class="page active">
+<div class="paper">
+
+<img src="1good.jpg" class="pochacco">
+
+<h1 class="title">For My Liege</h1>
+
+<p class="subtitle">
+A tiny little birthday book made just for you.
+</p>
+
+<p class="question">
+Before you get to the actual message...
+<br>
+answer a few things first :3
+</p>
+
+<div class="swipeHint">
+swipe →
+</div>
+
+</div>
+</section>
+
+
+<!-- QUESTION 1 -->
+
+<section class="page">
+<div class="paper">
+
+<img src="7cute.jpg" class="pochacco">
+
+<h2 class="smallTitle">Question 1</h2>
+
+<div class="question">
+Do you know how cute you are
+when you're just being yourself?
+</div>
+
+<div class="subtitle">
+You probably don't realize it as much as you should.
+</div>
+
+<div class="swipeHint">
+swipe →
+</div>
+
+</div>
+</section>
+
+
+<!-- QUESTION 2 -->
+
+<section class="page">
+<div class="paper">
+
+<img src="9blushing.jpg" class="pochacco">
+
+<h2 class="smallTitle">Question 2</h2>
+
+<div class="question">
+Do you know how adorable you get
+when you're shy?
+</div>
+
+<div class="subtitle">
+Because sometimes you really don't notice it :3
+</div>
+
+<div class="swipeHint">
+swipe →
+</div>
+
+</div>
+</section>
+
+
+<!-- QUESTION 3 -->
+
+<section class="page">
+<div class="paper">
+
+<img src="10blushinghard.jpg" class="pochacco">
+
+<h2 class="smallTitle">Question 3</h2>
+
+<div class="question">
+Do you ever realize how easy it is
+to make you flustered?
+</div>
+
+<div class="subtitle">
+No comment. :>>
+</div>
+
+<div class="swipeHint">
+swipe →
+</div>
+
+</div>
+</section>
+
+
+<!-- TRANSITION -->
+
+<section class="page">
+<div class="paper">
+
+<img src="11nocomment.jpg" class="pochacco">
+
+<h2 class="smallTitle">
+Okay...
+</h2>
+
+<div class="question">
+Enough questions.
+</div>
+
+<div class="subtitle">
+Now for the actual birthday message.
+</div>
+
+<div class="swipeHint">
+swipe →
+</div>
+
+</div>
+</section>
+
+
+<!-- HAPPY BIRTHDAY -->
+
+<section class="page">
+<div class="paper">
+
+<img src="5.jpg" class="pochacco">
+
+<h1 class="title">
+Happy Birthday, Roseannee
+</h1>
+
+<div class="message">
+
+<p>
+Today is about you.
+</p>
+
+<p>
+About the person you are right now, the person you've been becoming, and all the little pieces of you that make you who you are.
+</p>
+
+<p>
+You have your own way of making ordinary things feel special. The way you talk, the way you react to things, the little things you notice, and even the moments when you don't realize how cute you are.
+</p>
+
+<p>
+You don't have to be perfect to be worth celebrating. You don't have to have everything figured out either.
+</p>
+
+</div>
+
+<div class="swipeHint">
+swipe →
+</div>
+
+</div>
+</section>
+
+
+<!-- HER LIFE -->
+
+<section class="page">
+<div class="paper">
+
+<img src="3sweet.jpg" class="pochacco">
+
+<h2 class="smallTitle">
+About You
+</h2>
+
+<div class="message">
+
+<p>
+You've already gone through so many things that helped shape the person you are today.
+</p>
+
+<p>
+There are things you've learned, things you've had to deal with, moments that made you stronger, and moments that probably made you wish things were easier.
+</p>
+
+<p>
+But you're still growing.
+</p>
+
+<p>
+You still have so many things ahead of you that you haven't experienced yet, places you haven't seen, dreams you haven't reached, and versions of yourself you haven't met yet.
+</p>
+
+</div>
+
+<div class="swipeHint">
+swipe →
+</div>
+
+</div>
+</section>
+
+
+<!-- DIFFICULT MOMENTS -->
+
+<section class="page">
+<div class="paper">
+
+<img src="6cry.jpg" class="pochacco">
+
+<h2 class="smallTitle">
+And... I'm Sorry
+</h2>
+
+<div class="message">
+
+<p>
+I'm sorry for the moments when things weren't as easy as they should have been.
+</p>
+
+<p>
+I'm sorry for the times when words weren't enough, when something felt heavy, or when you needed a little more understanding.
+</p>
+
+<p>
+You deserve patience, kindness, and the space to be honest about what you're feeling.
+</p>
+
+<p>
+You don't always have to pretend that everything is okay.
+</p>
+
+</div>
+
+<div class="swipeHint">
+swipe →
+</div>
+
+</div>
+</section>
+
+
+<!-- BE KIND TO YOURSELF -->
+
+<section class="page">
+<div class="paper">
+
+<img src="2angry.jpg" class="pochacco">
+
+<h2 class="smallTitle">
+Be Kind To Yourself Too
+</h2>
+
+<div class="message">
+
+<p>
+I hope you remember that being hard on yourself doesn't make you better.
+</p>
+
+<p>
+You deserve the same kindness you give to other people.
+</p>
+
+<p>
+Your insecurities don't erase the good things about you. Your mistakes don't define you. And having difficult days doesn't make you any less worthy of good things.
+</p>
+
+<p>
+Please give yourself a little more patience.
+</p>
+
+<p>
+You are allowed to grow at your own pace.
+</p>
+
+</div>
+
+<div class="swipeHint">
+swipe →
+</div>
+
+</div>
+</section>
+
+
+<!-- SWEET -->
+
+<section class="page">
+<div class="paper">
+
+<img src="4sweet.jpg" class="pochacco">
+
+<h2 class="smallTitle">
+The Little Things
+</h2>
+
+<div class="message">
+
+<p>
+There are so many little things about you that make you, you.
+</p>
+
+<p>
+The way you express yourself.
+The way you get excited.
+The way you become shy.
+The way you can be playful one moment and thoughtful the next.
+</p>
+
+<p>
+Even the little things you might consider ordinary can be part of what makes you special.
+</p>
+
+</div>
+
+<div class="swipeHint">
+swipe →
+</div>
+
+</div>
+</section>
+
+
+<!-- FUTURE -->
+
+<section class="page">
+<div class="paper">
+
+<img src="1good.jpg" class="pochacco">
+
+<h2 class="smallTitle">
+Your Future
+</h2>
+
+<div class="message">
+
+<p>
+There is still so much ahead of you.
+</p>
+
+<p>
+I hope you keep chasing the things you want, even when they seem far away.
+</p>
+
+<p>
+I hope you get to become the person you've imagined yourself becoming.
+</p>
+
+<p>
+And when your plans change, I hope you remember that changing direction doesn't mean you've failed.
+</p>
+
+<p>
+You are still becoming.
+</p>
+
+</div>
+
+<div class="swipeHint">
+swipe →
+</div>
+
+</div>
+</section>
+
+
+<!-- DREAMS -->
+
+<section class="page">
+<div class="paper">
+
+<img src="7cute.jpg" class="pochacco">
+
+<h2 class="smallTitle">
+Keep Dreaming
+</h2>
+
+<div class="message">
+
+<p>
+Keep the dreams that make you excited.
+</p>
+
+<p>
+Keep the little things that make you smile.
+</p>
+
+<p>
+Keep discovering what you want from life.
+</p>
+
+<p>
+There is no need to have every answer right now.
+</p>
+
+<p>
+You have time to grow, learn, change, and find your own way.
+</p>
+
+</div>
+
+<div class="swipeHint">
+swipe →
+</div>
+
+</div>
+</section>
+
+
+<!-- PLAYFUL -->
+
+<section class="page">
+<div class="paper">
+
+<img src="8kindamad.jpg" class="pochacco">
+
+<h2 class="smallTitle">
+And Please...
+</h2>
+
+<div class="message">
+
+<p>
+Don't lose the playful side of you.
+</p>
+
+<p>
+Keep being silly sometimes.
+Keep laughing at random things.
+Keep making little moments memorable.
+</p>
+
+<p>
+Growing up doesn't mean you have to stop being you.
+</p>
+
+</div>
+
+<div class="heartBurst">
+✦ ✧ ✦
+</div>
+
+<div class="swipeHint">
+swipe →
+</div>
+
+</div>
+</section>
+
+
+<!-- FLUSTERED -->
+
+<section class="page">
+<div class="paper">
+
+<img src="10blushinghard.jpg" class="pochacco">
+
+<h2 class="smallTitle">
+One More Thing
+</h2>
+
+<div class="message">
+
+<p>
+You really are someone worth celebrating.
+</p>
+
+<p>
+Not because you have to be perfect.
+Not because you have to prove anything.
+</p>
+
+<p>
+Simply because you are you.
+</p>
+
+</div>
+
+<div class="swipeHint">
+swipe →
+</div>
+
+</div>
+</section>
+
+
+<!-- EXTRA -->
+
+<section class="page">
+<div class="paper">
+
+<img src="extra.jpg" class="pochacco">
+
+<h2 class="smallTitle">
+So...
+</h2>
+
+<div class="message">
+
+<p>
+Keep going.
+</p>
+
+<p>
+Keep growing.
+</p>
+
+<p>
+Keep dreaming.
+</p>
+
+<p>
+And keep becoming the person you want to be.
+</p>
+
+</div>
+
+<div class="heartBurst">
+✧ ✦ ✧
+</div>
+
+<div class="swipeHint">
+swipe →
+</div>
+
+</div>
+</section>
+
+
+<!-- FINAL -->
+
+<section class="page">
+<div class="paper">
+
+<div class="finalLine">
+
+<span>
+You made it to the end!!
+</span>
+
+<img src="Snoopy.jpg" class="snoopy">
+
+</div>
+
+<h1 class="title">
+Happy Birthday
+</h1>
+
+<div class="message">
+
+<p>
+I hope this little book gives you a small reminder of how much there is to celebrate about you.
+</p>
+
+<p>
+Keep being yourself, my liege.
+</p>
+
+<p>
+And please remember to be kind to yourself along the way.
+</p>
+
+</div>
+
+<div class="heartBurst">
+✦ ✧ ✦ ✧ ✦
+</div>
+
+<p class="subtitle">
+Made just for you.
+</p>
+
+</div>
+</section>
+
+</div>
+
+
+<!-- DECORATIONS -->
+
+<div class="decor flower f1">🌸</div>
+<div class="decor flower f2">🏵️</div>
+<div class="decor flower f3">💮</div>
+<div class="decor flower f4">🌼</div>
+
+<div class="decor sparkle s1">✦</div>
+<div class="decor sparkle s2">✧</div>
+<div class="decor sparkle s3">✦</div>
+<div class="decor sparkle s4">✧</div>
+
+<div class="bubble b1"></div>
+<div class="bubble b2"></div>
+<div class="bubble b3"></div>
+<div class="bubble b4"></div>
+
+
+<div id="dots"></div>
+
+
+<script>
+
+const pages = document.querySelectorAll(".page");
+
+let current = 0;
+let startX = 0;
+let startY = 0;
+
+function updateDots(){
+
+    const dots = document.getElementById("dots");
+
+    dots.innerHTML = "";
+
+    pages.forEach((page,index)=>{
+
+        const dot = document.createElement("div");
+
+        dot.className = "dot";
+
+        if(index === current){
+            dot.classList.add("active");
+        }
+
+        dots.appendChild(dot);
+
+    });
+
+}
+
+function showPage(index){
+
+    if(index < 0) index = 0;
+
+    if(index >= pages.length){
+        index = pages.length - 1;
+    }
+
+    pages.forEach((page,i)=>{
+
+        page.classList.toggle("active",i === index);
+
+    });
+
+    current = index;
+
+    updateDots();
+
+}
+
+function nextPage(){
+
+    if(current < pages.length - 1){
+        showPage(current + 1);
+    }
+
+}
+
+function previousPage(){
+
+    if(current > 0){
+        showPage(current - 1);
+    }
+
+}
+
+document.addEventListener("touchstart",function(e){
+
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+
+},{passive:true});
+
+
+document.addEventListener("touchend",function(e){
+
+    const endX = e.changedTouches[0].clientX;
+    const endY = e.changedTouches[0].clientY;
+
+    const diffX = endX - startX;
+    const diffY = endY - startY;
+
+    if(Math.abs(diffX) > 50 && Math.abs(diffX) > Math.abs(diffY)){
+
+        if(diffX < 0){
+            nextPage();
+        }else{
+            previousPage();
+        }
+
+    }
+
+},{passive:true});
+
+
+document.addEventListener("keydown",function(e){
+
+    if(e.key === "ArrowRight"){
+        nextPage();
+    }
+
+    if(e.key === "ArrowLeft"){
+        previousPage();
+    }
+
+});
+
+
+showPage(0);
+
+</script>
+
+</body>
